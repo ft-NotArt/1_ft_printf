@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 21:21:16 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/01 23:14:33 by anoteris         ###   ########.fr       */
+/*   Created: 2024/09/29 09:08:49 by anoteris          #+#    #+#             */
+/*   Updated: 2024/10/19 07:18:58 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#include "libft.h"
 
-int ft_printf(const char *format, ...) ;
-
-#endif
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s && *s != (char) c)
+		s++;
+	if (*s == (char) c)
+		return ((char *) s);
+	return (NULL);
+}

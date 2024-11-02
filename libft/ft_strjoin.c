@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 21:21:16 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/01 23:14:33 by anoteris         ###   ########.fr       */
+/*   Created: 2024/10/16 04:03:29 by anoteris          #+#    #+#             */
+/*   Updated: 2024/10/19 07:16:42 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#include "libft.h"
 
-int ft_printf(const char *format, ...) ;
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*res;
 
-#endif
+	res = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!res)
+		return (NULL);
+	ft_strlcpy(res, s1, ft_strlen(s1) + 1);
+	ft_strlcat(res, s2, (ft_strlen(s1) + ft_strlen(s2) + 1));
+	return (res);
+}

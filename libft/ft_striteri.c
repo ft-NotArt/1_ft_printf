@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 21:21:16 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/01 23:14:33 by anoteris         ###   ########.fr       */
+/*   Created: 2024/10/16 12:00:10 by anoteris          #+#    #+#             */
+/*   Updated: 2024/10/19 07:28:41 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#include "libft.h"
 
-int ft_printf(const char *format, ...) ;
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (s[i])
+	{
+		f(i, (s + i));
+		i++;
+	}
+}
