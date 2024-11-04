@@ -1,3 +1,7 @@
+GREEN			=	\x1b[0m\x1b[38;2;73;190;37m
+LIGHT_GREEN		=	\x1b[0m\x1b[38;2;182;229;168m
+DARK_GREEN		=	\x1b[1m\x1b[38;2;51;133;26m
+
 NAME		=	libft.a
 CFLAGS		=	-Wall -Wextra -Werror -g
 
@@ -42,21 +46,21 @@ ARFLAGS		=	rcs
 
 $(NAME):	$(OBJ)
 			@$(AR) $(ARFLAGS) $(NAME) $^
-			@echo -e '\x1b[38;2;182;229;168m \tCompiled\x1b[38;2;51;133;26m $(NAME)\x1b[38;2;182;229;168m that include\x1b[38;2;73;190;37m $(FILES)'
+			@echo -e '$(LIGHT_GREEN) \tCompiled$(DARK_GREEN) $(NAME)$(LIGHT_GREEN) that include$(GREEN) $(FILES)'
 
 all:		$(NAME)
 
 bonus:		$(OBJ) $(OBJ_BONUS)
 			@$(AR) $(ARFLAGS) $(NAME) $^
-			@echo -e '\x1b[38;2;182;229;168m \tCompiled\x1b[38;2;51;133;26m $(NAME)\x1b[38;2;182;229;168m that include\x1b[38;2;73;190;37m $(FILES)$(FILES_BONUS)'
+			@echo -e '$(LIGHT_GREEN) \tCompiled$(DARK_GREEN) $(NAME)$(LIGHT_GREEN) that include$(GREEN) $(FILES)$(FILES_BONUS)'
 
 clean:
 			@rm -f $(OBJ) $(OBJ_BONUS)
-			@echo -e '\x1b[38;2;182;229;168m \tCleaned\x1b[38;2;73;190;37m $(OBJ) $(OBJ_BONUS)'
+			@echo -e '$(LIGHT_GREEN) \tCleaned$(GREEN) $(OBJ) $(OBJ_BONUS)'
 
 fclean:		clean
 			@rm -f $(NAME)
-			@echo -e '\x1b[38;2;182;229;168m \tCleaned\x1b[38;2;51;133;26m $(NAME)'
+			@echo -e '$(LIGHT_GREEN) \tCleaned$(DARK_GREEN) $(NAME)'
 
 re:			fclean all
 

@@ -1,19 +1,33 @@
+# COLORS
+
+BLUE			=	\x1b[0m\x1b[38;2;0;165;255m
+LIGHT_BLUE		=	\x1b[0m\x1b[38;2;179;228;255m
+DARK_BLUE		=	\x1b[1m\x1b[38;2;0;99;153m
+DARK_GREEN		=	\x1b[1m\x1b[38;2;51;133;26m
+
+# TARGET
+
 NAME			=	libftprintf.a
-
-MAKEFLAGS		+=	-s
-CFLAGS			=	-Wall -Werror -Wextra -g
-
-FILES			=	ft_printf		\
-				ft_printf_pars	\
-
-OBJ				=	$(addsuffix .o, $(FILES))
-SRC				=	$(addsuffix .c, $(FILES))
 
 LIBFT			=	libft.a
 LIBFT_DIR		=	libft
 LIBFT_PATH		=	$(LIBFT_DIR)/$(LIBFT)
 
+# FLAGS
+
+MAKEFLAGS		+=	-s
+CFLAGS			=	-Wall -Werror -Wextra -g
 ARFLAGS			=	rcs
+
+# FILES
+
+FILES			=	ft_printf		\
+					ft_printf_pars	\
+
+OBJ				=	$(addsuffix .o, $(FILES))
+SRC				=	$(addsuffix .c, $(FILES))
+
+# RULES
 
 all				:	$(NAME)
 
@@ -22,19 +36,19 @@ $(LIBFT_PATH)	:
 
 $(NAME)			:	$(OBJ) | $(LIBFT_PATH)
 					$(AR) $(ARFLAGS) $@ $^
+					echo -e '$(LIGHT_BLUE) \tCompiled$(DARK_BLUE) $@$(LIGHT_BLUE) that include$(BLUE) $(FILES)'
 					printf 'OPEN $@\nADDLIB $(LIBFT_PATH)\nSAVE\nEND' | $(AR) -M
-					echo -e '\x1b[38;2;182;229;168m \tCompiled\x1b[38;2;51;133;26m $@\x1b[38;2;182;229;168m that include\x1b[38;2;73;190;37m $(FILES)'
+					echo -e '$(LIGHT_BLUE) \tIncluded$(DARK_GREEN) $(LIBFT)$(LIGHT_BLUE) to$(DARK_BLUE) $@'
 
 clean			:
 					$(RM) $(OBJ)
-					$(MAKE) -C $(LIBFT_DIR) $@
-					echo -e '\x1b[38;2;182;229;168m \tCleaned\x1b[38;2;73;190;37m $(OBJ)'
+					$(MAKE) -C $(LIBFT_DIR) f$@
+					echo -e '$(LIGHT_BLUE) \tCleaned$(BLUE) $(OBJ)'
 
 fclean			:	clean
 					$(RM) $(NAME)
-					$(MAKE) -C $(LIBFT_DIR) $@
-					echo -e '\x1b[38;2;182;229;168m \tCleaned\x1b[38;2;51;133;26m $(NAME)'
+					echo -e '$(LIGHT_BLUE) \tCleaned$(DARK_BLUE) $(NAME)'
 
 re				:	fclean all
 
-.PHONY			= all clean fclean re
+.PHONY			=	all clean fclean re
