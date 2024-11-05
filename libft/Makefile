@@ -27,6 +27,13 @@ FILES		=	ft_isalnum ft_isdigit ft_isalpha ft_isprint ft_isascii	\
 				ft_strmapi ft_striteri									\
 				ft_putchar_fd ft_putstr_fd								\
 				ft_putendl_fd ft_putnbr_fd								\
+\
+\
+				ft_intlen												\
+				ft_uintlen												\
+				ft_hexlen											\
+				ft_putunbr_fd											\
+				ft_puthexnbr_fd											\
 
 SRC			=	$(addsuffix .c, $(FILES))
 OBJ			=	$(addsuffix .o, $(FILES))

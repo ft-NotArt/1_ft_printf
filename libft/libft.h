@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 07:14:00 by anoteris          #+#    #+#             */
-/*   Updated: 2024/10/20 15:25:36 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/05 11:56:56 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,14 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+int		ft_intlen(int nb);
+int		ft_uintlen(unsigned int nb) ;
+int		ft_hexlen(unsigned long nb);
+void	ft_putunbr_fd(unsigned int n, int fd);
+void	ft_puthexnbr_fd(unsigned long n, int fd, int hex_case) ;
+
+# define MAJ 1
+# define MIN 0
 
 #endif

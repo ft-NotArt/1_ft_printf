@@ -1,13 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_pars.c                                   :+:      :+:    :+:   */
+/*   ft_uintlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 22:42:33 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/04 10:06:33 by anoteris         ###   ########.fr       */
+/*   Created: 2024/11/05 00:13:27 by anoteris          #+#    #+#             */
+/*   Updated: 2024/11/05 06:41:11 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//bonjour
+#include "libft.h"
+
+int	ft_uintlen(unsigned int nb)
+{
+	int		digits ;
+
+	digits = nb == 0 ;
+	while (nb > 0)
+	{
+		nb /= 10;
+		digits++;
+	}
+	return (digits);
+}

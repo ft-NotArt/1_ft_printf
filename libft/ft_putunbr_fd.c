@@ -1,13 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_pars.c                                   :+:      :+:    :+:   */
+/*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 22:42:33 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/04 10:06:33 by anoteris         ###   ########.fr       */
+/*   Created: 2024/11/04 22:56:43 by anoteris          #+#    #+#             */
+/*   Updated: 2024/11/04 23:02:57 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//bonjour
+#include "libft.h"
+
+void	ft_putunbr_fd(unsigned int n, int fd)
+{
+	if (n > 9)
+		ft_putunbr_fd((n / 10), fd);
+	ft_putchar_fd(((n % 10) + '0'), fd);
+}

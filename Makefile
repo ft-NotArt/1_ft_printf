@@ -23,6 +23,15 @@ ARFLAGS			=	rcs
 
 FILES			=	ft_printf		\
 					ft_printf_pars	\
+					ft_printf_struct_init \
+					ft_printf_str_utils \
+					ft_printf_identifiers \
+					ft_printf_identifier_str \
+					ft_printf_identifier_nbr \
+					ft_printf_identifier_address \
+					ft_printf_flags \
+					ft_printf_field_str \
+					ft_printf_field_int \
 
 OBJ				=	$(addsuffix .o, $(FILES))
 SRC				=	$(addsuffix .c, $(FILES))
