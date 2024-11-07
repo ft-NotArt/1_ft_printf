@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:21:16 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/05 11:57:41 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/07 07:07:32 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			ft_printf(const char *format, ...);
 
 bool	ft_isflag(int c) ;
 bool	ft_isformat(int c) ;
-int ft_format(va_list args, t_percent *percent) ;
+int ft_printf_format(va_list args, t_percent *percent) ;
 int ft_id_c(va_list args) ;
 int ft_id_s(va_list args) ;
 int ft_id_d(va_list args) ;
@@ -64,10 +64,15 @@ int ft_id_percent() ;
 int ft_flag_hashtag(va_list args, t_percent *percent) ;
 int ft_flag_blank(va_list args, t_percent *percent) ;
 int ft_flag_plus(va_list args, t_percent *percent) ;
-int ft_field_with_char(va_list args, t_percent *percent) ;
-int ft_field_with_str(va_list args, t_percent *percent) ;
-int ft_field_with_int(va_list args, t_percent *percent) ;
-int ft_field_with_uint(va_list args, t_percent *percent) ;
-int ft_field_with_hex(va_list args, t_percent *percent) ;
+int ft_field_char(va_list args, t_percent *percent) ;
+int ft_field_str(va_list args, t_percent *percent) ;
+int ft_field_int(va_list args, t_percent *percent) ;
+int ft_field_uint(va_list args, t_percent *percent) ;
+int ft_field_hex(va_list args, t_percent *percent) ;
+int	ft_write_field(t_percent *percent) ;
+int ft_write_sign(int nb, t_percent *percent) ;
+int ft_write_0x(t_percent *percent) ;
+int	ft_printf_flag_handling(va_list args, t_percent *percent) ;
+int ft_field_address(va_list args, t_percent *percent) ;
 
 #endif

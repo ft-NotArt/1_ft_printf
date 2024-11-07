@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 02:42:29 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/05 04:12:06 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/07 01:24:29 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int ft_flag_hashtag(va_list args, t_percent *percent)
 	address = va_arg(cpy, unsigned int) ;
 	written = 0 ;
 	if (percent->format == 'x' && address != 0)
-		written = write(STDIN_FILENO, "0x", 2) ;
+		written = write(STDOUT_FILENO, "0x", 2) ;
 	if (percent->format == 'X' && address != 0)
-		written = write(STDIN_FILENO, "0X", 2) ;
+		written = write(STDOUT_FILENO, "0X", 2) ;
 	va_end(cpy) ;
 	return (written);
 }
@@ -40,7 +40,7 @@ int ft_flag_blank(va_list args, t_percent *percent)
 	written = 0 ;
 	if ((percent->format == 'd' || percent->format == 'i')
 		&& val >= 0)
-		written = write(STDIN_FILENO, " ", 1) ;
+		written = write(STDOUT_FILENO, " ", 1) ;
 	va_end(cpy) ;
 	return (written);
 }
@@ -56,7 +56,7 @@ int ft_flag_plus(va_list args, t_percent *percent)
 	written = 0 ;
 	if ((percent->format == 'd' || percent->format == 'i')
 		&& val >= 0)
-		written = write(STDIN_FILENO, "+", 1) ;
+		written = write(STDOUT_FILENO, "+", 1) ;
 	va_end(cpy) ;
 	return (written);
 }
