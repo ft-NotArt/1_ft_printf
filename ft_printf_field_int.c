@@ -6,82 +6,117 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:49:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/05 12:28:04 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/07 07:45:41 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_field_with_int(va_list args, t_percent *percent)
+int ft_field_int(va_list args, t_percent *percent)
 {
-	int	nbr ;
-	int	written ;
-	int	len ;
+	long	nbr ;
+	int		len ;
+	int		written ;
+	int		space ;
 
 	nbr = va_arg(args, int) ;
 	len = ft_intlen(nbr) ;
 	written = len ;
-	while(percent->field.max-- > len)
-		written += write(STDIN_FILENO, "0", 1) ;
-	if(!percent->minus)
-		while(percent->field.min > len++)
-			written += write(STDIN_FILENO, " ", 1) ;
-	ft_putnbr_fd(nbr, STDIN_FILENO) ;
-	if(percent->minus)
-		while(percent->field.min > len++)
-			written += write(STDIN_FILENO, " ", 1) ;
-	percent->format = 0 ;
-	return written ;
+	space = percent->field.min - (len * (len >= percent->field.max)
+		+ percent->field.max * (len < percent->field.max)) ;
+	while ((!percent->zero || percent->field.period) && !percent->minus
+		&& space-- > (nbr < 0 || percent->plus || percent->blank))
+		written += ft_write_field(percent) ;
+	written += ft_write_sign(nbr, percent) ;
+	while (percent->zero && !percent->minus
+		&& space-- > (nbr < 0 || percent->plus || percent->blank))
+		written += ft_write_field(percent) ;
+	while (percent->field.max-- > len - (nbr < 0))
+		written += write(STDOUT_FILENO, "0", 1) ;
+	ft_putlongnbr_fd(ft_abs(nbr), STDOUT_FILENO) ;
+	while (percent->minus
+		&& space-- > (nbr < 0 || percent->plus || percent->blank))
+		written += ft_write_field(percent) ;
+	return (percent->format = 0, written) ; //FIXME: how ?
 }
 
-int ft_field_with_uint (va_list args, t_percent *percent)
+
+int ft_field_uint(va_list args, t_percent *percent)
 {
 	unsigned int	nbr ;
-	int	written ;
-	int	len ;
-
+	int		len ;
+	int		written ;
+	int		space ;
 	nbr = va_arg(args, unsigned int) ;
 	len = ft_uintlen(nbr) ;
 	written = len ;
-	while(percent->field.max-- > len)
-		written += write(STDIN_FILENO, "0", 1) ;
-	if(!percent->minus)
-		while(percent->field.min > len++)
-			written += write(STDIN_FILENO, " ", 1) ;
-	ft_putunbr_fd(nbr, STDIN_FILENO) ;
-	if(percent->minus)
-		while(percent->field.min > len++)
-			written += write(STDIN_FILENO, " ", 1) ;
-	percent->format = 0 ;
-	return written ;
+	space = percent->field.min - (len * (len >= percent->field.max)
+		+ percent->field.max * (len < percent->field.max)) ;
+	while ((!percent->zero || percent->field.period)
+		&& !percent->minus && space-- > 0)
+		written += ft_write_field(percent) ;
+	while (percent->zero && !percent->minus && space-- > 0)
+		written += ft_write_field(percent) ;
+	while (percent->field.max-- > len)
+		written += write(STDOUT_FILENO, "0", 1) ;
+	ft_putunbr_fd(nbr, STDOUT_FILENO) ;
+	while (percent->minus && space-- > 0)
+		written += ft_write_field(percent) ;
+	return (percent->format = 0, written) ;
 }
-#include <stdio.h> //TODO: clc lahuiss
-int ft_field_with_hex(va_list args, t_percent *percent)
+
+int ft_field_hex(va_list args, t_percent *percent)
+{
+	unsigned int	nbr ;
+	int		len ;
+	int		written ;
+	int		space ;
+
+	nbr = va_arg(args, unsigned int) ;
+	len = ft_hexlen(nbr) ;
+	written = len ;
+	space = percent->field.min - (len * (len >= percent->field.max)
+		+ percent->field.max * (len < percent->field.max)) ;
+	while ((!percent->zero || percent->field.period)
+		&& !percent->minus && space-- > (2 * (percent->hashtag)))
+		written += ft_write_field(percent) ;
+	written += ft_write_0x(percent) ;
+	while (percent->zero && !percent->minus
+		&& space-- > (2 * (percent->hashtag)))
+		written += ft_write_field(percent) ;
+	while (percent->field.max-- > len - (nbr < 0))
+		written += write(STDOUT_FILENO, "0", 1) ;
+	ft_puthexnbr_fd((unsigned long) nbr, STDOUT_FILENO, percent->format) ;
+	while (percent->minus && space-- > (2 * (percent->hashtag)))
+		written += ft_write_field(percent) ;
+	return (percent->format = 0, written) ;
+}
+
+int ft_field_address(va_list args, t_percent *percent)
 {
 	unsigned long	nbr ;
-	int	written ;
-	int	len ;
+	int		len ;
+	int		written ;
+	int		space ;
 
 	nbr = va_arg(args, unsigned long) ;
-	len = ft_hexlen(nbr) ;
-	printf("\n\t\t\thexlen = ? %d", len) ;
+	len = 5 ;
+	if (nbr)
+		len = ft_hexlen(nbr) ;
 	written = len ;
-	while(percent->field.max-- > len)
-		written += write(STDIN_FILENO, "0", 1) ;
-	if(!percent->minus)
-		while(percent->field.min > len++)
-			written += write(STDIN_FILENO, " ", 1) ;
-	if (percent->format == 'x')
-		ft_puthexnbr_fd(nbr, STDIN_FILENO, MIN) ;
+	space = percent->field.min - len ;
+	while ((!percent->zero || percent->field.period)
+		&& !percent->minus && space-- > (2 * !!nbr))
+		written += ft_write_field(percent) ;
+	if (nbr)
+		written += ft_write_0x(percent) ;
+	while (percent->zero && !percent->minus && space-- > (2 * !!nbr))
+		written += ft_write_field(percent) ;
+	if (nbr)
+		ft_puthexnbr_fd(nbr, STDOUT_FILENO, MIN) ;
 	else
-		ft_puthexnbr_fd(nbr, STDIN_FILENO, MAJ) ;
-	printf("\n\t\t\tbig written : %d", written) ;
-	if(percent->minus)
-		while(percent->field.min > len++) //FIXME: tf it print an extra space for ?
-		{
-			// printf("\n\tlen : %d, min : %d, nbr : %lu", len, percent->field.min, nbr) ;
-			written += write(STDIN_FILENO, " ", 1) ;
-		}
-	percent->format = 0 ;
-	return written ;
+		write(STDOUT_FILENO, "(nil)", 5) ;
+	while (percent->minus && space-- > (2 * !!nbr))
+		written += ft_write_field(percent) ;
+	return (percent->format = 0, written) ;
 }

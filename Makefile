@@ -32,6 +32,7 @@ FILES			=	ft_printf		\
 					ft_printf_flags \
 					ft_printf_field_str \
 					ft_printf_field_int \
+					ft_printf_write_field \
 
 OBJ				=	$(addsuffix .o, $(FILES))
 SRC				=	$(addsuffix .c, $(FILES))

@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthexnbr_fd.c                                  :+:      :+:    :+:   */
+/*   ft_putlongnbr_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 23:15:05 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/07 06:11:51 by anoteris         ###   ########.fr       */
+/*   Created: 2024/11/06 23:20:13 by anoteris          #+#    #+#             */
+/*   Updated: 2024/11/06 23:37:48 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_puthexnbr_fd(unsigned long n, int fd, char hex_case)
+void	ft_putlongnbr_fd(long long n, int fd)
 {
-	char	*base ;
-
-	base = "0123456789abcdef" ;
-	if (hex_case == 'X')
-		base = "0123456789ABCDEF" ;
-	if (n > 15)
-		ft_puthexnbr_fd((n / 16), fd, hex_case);
-	ft_putchar_fd((base[n % 16]), fd);
+	if (n == LLONG_MIN)
+		ft_putstr_fd("-9223372036854775808", fd);
+	else
+	{
+		if (n < 0)
+		{
+			ft_putchar_fd('-', fd);
+			n = -n;
+		}
+		if (n > 9)
+			ft_putlongnbr_fd((n / 10), fd);
+		ft_putchar_fd(((n % 10) + '0'), fd);
+	}
 }

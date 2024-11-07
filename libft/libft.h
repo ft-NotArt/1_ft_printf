@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 07:14:00 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/05 11:56:56 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/07 06:16:26 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -72,9 +73,17 @@ int		ft_intlen(int nb);
 int		ft_uintlen(unsigned int nb) ;
 int		ft_hexlen(unsigned long nb);
 void	ft_putunbr_fd(unsigned int n, int fd);
-void	ft_puthexnbr_fd(unsigned long n, int fd, int hex_case) ;
+/**
+ * @param n ton ulong
+ * @param fd le fd
+ * @param hex_case x/X selon les maj
+ */
+void	ft_puthexnbr_fd(unsigned long n, int fd, char hex_case) ;
 
-# define MAJ 1
-# define MIN 0
+# define MAJ 'X'
+# define MIN 'x'
+
+long long	ft_abs(int nb) ;
+void	ft_putlongnbr_fd(long long n, int fd) ;
 
 #endif

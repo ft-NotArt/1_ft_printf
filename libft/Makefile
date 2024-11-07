@@ -31,9 +31,11 @@ FILES		=	ft_isalnum ft_isdigit ft_isalpha ft_isprint ft_isascii	\
 \
 				ft_intlen												\
 				ft_uintlen												\
-				ft_hexlen											\
+				ft_hexlen												\
 				ft_putunbr_fd											\
 				ft_puthexnbr_fd											\
+				ft_abs													\
+				ft_putlongnbr_fd										\
 
 SRC			=	$(addsuffix .c, $(FILES))
 OBJ			=	$(addsuffix .o, $(FILES))
