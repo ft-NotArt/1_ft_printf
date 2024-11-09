@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:16:24 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/09 10:27:50 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/09 11:15:16 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,6 @@ __attribute__ ((format(printf, 1, 2))) int	ft_printf(const char *format, ...) //
 }
 
 
-// int main()
-// {
-// 	printf("\n%d\n", ft_printf("U%-0#5.9c\n\t%s\n\twU\n", '@', "c'est big")) ;
-// 	printf("\n%d\n", ft_printf("!%d!\n", 5) - 3) ;
-// }
 
 
 
@@ -80,40 +75,62 @@ __attribute__ ((format(printf, 1, 2))) int	ft_printf(const char *format, ...) //
 
 
 
-// 	printf("\treturn value : %d\n", printf("|%5.0i|", 0) - 2);
-// 	printf("\treturn value : %d\n\n", ft_printf("|%5.0i|", 0) - 2);
+// 	// printf("\treturn value : %d\n", printf("|%5.0i|", 0) - 2);
+// 	// printf("\treturn value : %d\n\n", ft_printf("|%5.0i|", 0) - 2);
 
-// 	printf("\treturn value : %d\n", printf("|%5.i|", 0) - 2);
-// 	printf("\treturn value : %d\n\n", ft_printf("|%5.i|", 0) - 2);
+// 	// printf("\treturn value : %d\n", printf("|%5.i|", 0) - 2);
+// 	// printf("\treturn value : %d\n\n", ft_printf("|%5.i|", 0) - 2);
 
-// 	printf("\treturn value : %d\n", printf("|%-5.0i|", 0) - 2);
-// 	printf("\treturn value : %d\n\n", ft_printf("|%-5.0i|", 0) - 2);
+// 	// printf("\treturn value : %d\n", printf("|%-5.0i|", 0) - 2);
+// 	// printf("\treturn value : %d\n\n", ft_printf("|%-5.0i|", 0) - 2);
 
-// 	printf("\treturn value : %d\n", printf("|%-5.i|", 0) - 2);
-// 	printf("\treturn value : %d\n\n", ft_printf("|%-5.i|", 0) - 2);
+// 	// printf("\treturn value : %d\n", printf("|%-5.i|", 0) - 2);
+// 	// printf("\treturn value : %d\n\n", ft_printf("|%-5.i|", 0) - 2);
 
-// 	printf("\treturn value : %d\n", printf("|% 41.24d|", 0) - 2);
-// 	printf("\treturn value : %d\n\n", ft_printf("|% 41.24d|", 0) - 2);
+// 	// printf("\treturn value : %d\n", printf("|% 41.24d|", 0) - 2);
+// 	// printf("\treturn value : %d\n\n", ft_printf("|% 41.24d|", 0) - 2);
 
-// 	printf("\treturn value : %d\n", printf("|%+41.24d|", 0) - 2);
-// 	printf("\treturn value : %d\n\n", ft_printf("|%+41.24d|", 0) - 2);
+// 	// printf("\treturn value : %d\n", printf("|%+41.24d|", 0) - 2);
+// 	// printf("\treturn value : %d\n\n", ft_printf("|%+41.24d|", 0) - 2);
 
-// 	printf("\treturn value : %d\n", printf("|%41.24d|", 0) - 2);
-// 	printf("\treturn value : %d\n\n", ft_printf("|%41.24d|", 0) - 2);
+// 	// printf("\treturn value : %d\n", printf("|%41.24d|", 0) - 2);
+// 	// printf("\treturn value : %d\n\n", ft_printf("|%41.24d|", 0) - 2);
 
-// 	printf("\treturn value : %d\n", printf("|%0 41.24d|", 0) - 2);
-// 	printf("\treturn value : %d\n\n", ft_printf("|%0 41.24d|", 0) - 2);
+// 	// printf("\treturn value : %d\n", printf("|%0 41.24d|", 0) - 2);
+// 	// printf("\treturn value : %d\n\n", ft_printf("|%0 41.24d|", 0) - 2);
 
-// 	printf("\treturn value : %d\n", printf("|%0+41.24d|", 0) - 2);
-// 	printf("\treturn value : %d\n\n", ft_printf("|%0+41.24d|", 0) - 2);
+// 	// printf("\treturn value : %d\n", printf("|%0+41.24d|", 0) - 2);
+// 	// printf("\treturn value : %d\n\n", ft_printf("|%0+41.24d|", 0) - 2);
 
-// 	printf("\treturn value : %d\n", printf("|%041.24d|", 0) - 2);
-// 	printf("\treturn value : %d\n\n", ft_printf("|%041.24d|", 0) - 2);
+// 	// printf("\treturn value : %d\n", printf("|%041.24d|", 0) - 2);
+// 	// printf("\treturn value : %d\n\n", ft_printf("|%041.24d|", 0) - 2);
 
+
+// 	// printf("|%d|\n", 0) ;
+// 	// printf("|%+d|\n", 0) ;
+// 	// printf("|% d|\n", 0) ;
 
 // 	printf("|%d|\n", 0) ;
-// 	printf("|%+d|\n", 0) ;
-// 	printf("|% d|\n", 0) ;
+// 	printf("|%5d|\n", 0) ;
+// 	printf("|%.5d|\n", 0) ;
+// 	printf("|%5.5d|\n", 0) ;
+// 	printf("\n") ;
+// 	printf("|%d|\n", 0) ;
+// 	printf("|%*d|\n", 5, 0) ;
+// 	printf("|%.*d|\n", 5, 0) ;
+// 	printf("|%*.*d|\n", 5, 5, 0) ;
+// 	printf("\n") ;
+
+// 	ft_printf("|%d|\n", 0) ;
+// 	ft_printf("|%5d|\n", 0) ;
+// 	ft_printf("|%.5d|\n", 0) ;
+// 	ft_printf("|%5.5d|\n", 0) ;
+// 	ft_printf("\n") ;
+// 	ft_printf("|%d|\n", 0) ;
+// 	ft_printf("|%*d|\n", 5, 0) ;
+// 	ft_printf("|%.*d|\n", 5, 0) ;
+// 	ft_printf("|%*.*d|\n", 5, 5, 0) ;
+// 	ft_printf("\n") ;
 
 
 // 	printf("------------------\n") ;

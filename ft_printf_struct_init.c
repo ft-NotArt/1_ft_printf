@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:11:42 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/09 10:29:50 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/09 11:14:45 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,28 @@ static void	ft_percent_flag(t_percent *percent, char **format)
 
 static void	ft_percent_field(t_percent *percent, char **format, va_list args)
 {
-	(void) args ;
+	if (**format == '*')
+	{
+		percent->field.min = va_arg(args, int);
+		(*format)++ ;
+	}
 	while ((ft_isdigit(**format)) && **format)
 	{
-		percent->field.min *= 10 ;
-		percent->field.min +=  ((**format) - '0') ;
+		percent->field.min = (percent->field.min * 10) + ((**format) - '0') ;
 		(*format)++ ;
 	}
 	if (**format == '.' && **format)
 	{
 		percent->field.period = true ;
 		(*format)++ ;
+		if (**format == '*')
+		{
+			percent->field.max = va_arg(args, int);
+			(*format)++ ;
+		}
 		while ((ft_isdigit(**format)) && **format)
 		{
-			percent->field.max *= 10 ;
-			percent->field.max +=  ((**format) - '0') ;
+			percent->field.max = (percent->field.max * 10) + ((**format) - '0') ;
 			(*format)++ ;
 		}
 	}
