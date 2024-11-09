@@ -16,7 +16,7 @@ LIBFT_PATH		=	$(LIBFT_DIR)/$(LIBFT)
 # FLAGS
 
 MAKEFLAGS		+=	-s
-CFLAGS			=	-Wall -Werror -Wextra -g
+CFLAGS			=	-Wall -Werror -Wextra -g -fPIC
 ARFLAGS			=	rcs
 
 # FILES
@@ -33,8 +33,9 @@ FILES			=	ft_printf		\
 					ft_printf_field_str \
 					ft_printf_field_int \
 					ft_printf_write_field \
+					ft_printf_field_adress \
 
-OBJ				=	$(addsuffix .o, $(FILES))
+OBJ				=	$(addsuffix .o, $(FILES))	
 SRC				=	$(addsuffix .c, $(FILES))
 
 # RULES
@@ -60,5 +61,7 @@ fclean			:	clean
 					echo -e '$(LIGHT_BLUE) \tCleaned$(DARK_BLUE) $(NAME)'
 
 re				:	fclean all
+
+bonus			:	re
 
 .PHONY			=	all clean fclean re

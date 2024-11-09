@@ -6,13 +6,13 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:11:42 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/05 10:36:21 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/09 10:29:50 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_percent_flag(t_percent *percent, char **format)
+static void	ft_percent_flag(t_percent *percent, char **format)
 {
 	while (ft_isflag(**format) && **format)
 	{
@@ -30,8 +30,9 @@ void	ft_percent_flag(t_percent *percent, char **format)
 	}
 }
 
-void	ft_percent_field(t_percent *percent, char **format)
+static void	ft_percent_field(t_percent *percent, char **format, va_list args)
 {
+	(void) args ;
 	while ((ft_isdigit(**format)) && **format)
 	{
 		percent->field.min *= 10 ;
@@ -51,7 +52,7 @@ void	ft_percent_field(t_percent *percent, char **format)
 	}
 }
 
-void	ft_percent_identifier(t_percent *percent, char **format)
+static void	ft_percent_identifier(t_percent *percent, char **format)
 {
 	if (ft_isformat(**format))
 	{
@@ -72,7 +73,7 @@ static t_field	ft_field_init()
 	return field ;
 }
 
-t_percent	ft_percent_init(char **format)
+t_percent	ft_percent_init(char **format, va_list args)
 {
 	t_percent	percent ;
 
@@ -85,7 +86,7 @@ t_percent	ft_percent_init(char **format)
 	percent.format = 0 ;
 
 	ft_percent_flag(&percent, format) ;
-	ft_percent_field(&percent, format) ;
+	ft_percent_field(&percent, format, args) ;
 	ft_percent_identifier(&percent, format) ;
 	return percent ;
 }

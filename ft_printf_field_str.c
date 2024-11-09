@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 05:33:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/07 01:24:29 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/07 10:49:06 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,23 @@ int ft_field_str(va_list args, t_percent *percent)
 
 	str = va_arg(args, char *) ;
 	written = 0 ;
+	len = 0 ;
 	if (!str)
 	{
-		if (percent->field.max > 6)
-			written += write(STDOUT_FILENO, "(null)", 6) ;
-		return written ;
+		if (!percent->field.period || percent->field.max >= 6)
+			len = 6 ;
 	}
-	len = ft_strlen(str) ;
+	else
+		len = ft_strlen(str) ;
 	if (percent->field.max < len && percent->field.period)
 		len = percent->field.max ;
-	if (percent->minus)
-		written += ft_putstr_max_field_width(percent, &str, len) ;
-	while (percent->field.min-- > len)
+	while (!percent->minus && percent->field.min-- > len)
 		written += write(STDOUT_FILENO, " ", 1) ;
-	if (!percent->minus)
+	if (!str && (!percent->field.period || percent->field.max >= 6))
+		written += write(STDOUT_FILENO, "(null)", len) ;
+	else
 		written += ft_putstr_max_field_width(percent, &str, len) ;
-	percent->format = 0 ;
-	return written ;
+	while (percent->minus && percent->field.min-- > len)
+		written += write(STDOUT_FILENO, " ", 1) ;
+	return (percent->format = 0, written) ;
 }

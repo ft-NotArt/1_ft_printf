@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:21:16 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/07 07:07:32 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/09 10:29:17 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ typedef struct s_percent
 	unsigned char	format;
 }					t_percent;
 
-t_percent	ft_percent_init(char **format) ;
-void		ft_percent_flag(t_percent *percent, char **format);
-void		ft_percent_field(t_percent *percent, char **format);
-void		ft_percent_identifier(t_percent *percent, char **format);
+t_percent	ft_percent_init(char **format, va_list args) ;
 
 // Le Maxi printf
 
