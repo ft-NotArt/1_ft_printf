@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_write_field.c                            :+:      :+:    :+:   */
+/*   ft_printf_write_flag.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:41:48 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/07 09:34:55 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/10 13:01:33 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int ft_write_0x(t_percent *percent)
 	int written ;
 
 	written = 0 ;
+	if (percent->format == 'p')
+		written += write(STDOUT_FILENO, "0x", 2) ;
 	if (percent->hashtag)
 	{
 		if(percent->format == 'x')
@@ -50,7 +52,5 @@ int ft_write_0x(t_percent *percent)
 		if(percent->format == 'X')
 			written += write(STDOUT_FILENO, "0X", 2) ;
 	}
-	if (percent->format == 'p')
-		written += write(STDOUT_FILENO, "0x", 2) ;
 	return written ;
 }

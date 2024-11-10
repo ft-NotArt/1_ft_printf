@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 05:33:43 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/07 10:49:06 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/10 13:51:01 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int ft_field_char (va_list args, t_percent *percent)
 	return written ;
 }
 
-int ft_putstr_max_field_width(t_percent *percent, char **str, int len)
+static int ft_putstr_max_precision(t_percent *percent, char **str, int len)
 {
 	int written ;
 
@@ -65,7 +65,7 @@ int ft_field_str(va_list args, t_percent *percent)
 	if (!str && (!percent->field.period || percent->field.max >= 6))
 		written += write(STDOUT_FILENO, "(null)", len) ;
 	else
-		written += ft_putstr_max_field_width(percent, &str, len) ;
+		written += ft_putstr_max_precision(percent, &str, len) ;
 	while (percent->minus && percent->field.min-- > len)
 		written += write(STDOUT_FILENO, " ", 1) ;
 	return (percent->format = 0, written) ;

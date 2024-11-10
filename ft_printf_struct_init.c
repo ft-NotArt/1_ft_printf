@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:11:42 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/09 11:14:45 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/10 13:39:27 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,8 @@ static void	ft_percent_field(t_percent *percent, char **format, va_list args)
 static void	ft_percent_identifier(t_percent *percent, char **format)
 {
 	if (ft_isformat(**format))
-	{
 		percent->format = **format ;
-		(*format)++ ;
-	}
+	(*format)++ ;
 }
 
 

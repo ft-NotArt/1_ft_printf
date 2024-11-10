@@ -16,24 +16,25 @@ LIBFT_PATH		=	$(LIBFT_DIR)/$(LIBFT)
 # FLAGS
 
 MAKEFLAGS		+=	-s
-CFLAGS			=	-Wall -Werror -Wextra -g -fPIC
+CFLAGS			=	-Wall -Werror -Wextra -g -Ilibft
 ARFLAGS			=	rcs
 
 # FILES
 
-FILES			=	ft_printf		\
-					ft_printf_pars	\
-					ft_printf_struct_init \
-					ft_printf_str_utils \
-					ft_printf_identifiers \
-					ft_printf_identifier_str \
-					ft_printf_identifier_nbr \
-					ft_printf_identifier_address \
-					ft_printf_flags \
-					ft_printf_field_str \
-					ft_printf_field_int \
-					ft_printf_write_field \
-					ft_printf_field_adress \
+FILES			=	ft_printf						\
+\
+					ft_printf_struct_init			\
+					ft_printf_str_utils				\
+\
+					ft_printf_identifiers			\
+					ft_printf_identifier_str		\
+					ft_printf_identifier_nbr		\
+					ft_printf_identifier_address	\
+\
+					ft_printf_field_str				\
+					ft_printf_field_int				\
+					ft_printf_field_adress			\
+					ft_printf_write_flag			\
 
 OBJ				=	$(addsuffix .o, $(FILES))	
 SRC				=	$(addsuffix .c, $(FILES))
