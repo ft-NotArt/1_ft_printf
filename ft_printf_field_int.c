@@ -6,7 +6,7 @@
 /*   By: anoteris <noterisarthur42@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:49:20 by anoteris          #+#    #+#             */
-/*   Updated: 2024/11/10 13:53:04 by anoteris         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:34:02 by anoteris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int ft_field_hex(va_list args, t_percent *percent)
 	while (percent->zero && !percent->minus
 		&& space-- > 0)
 		written += ft_write_field(percent) ;
-	while (percent->field.max-- > len - (nbr < 0))
+	while (percent->field.max-- > len)
 		written += write(STDOUT_FILENO, "0", 1) ;
 	ft_puthexnbr_fd((unsigned long) nbr, STDOUT_FILENO, percent->format) ;
 	while (percent->minus && space-- > 0)
